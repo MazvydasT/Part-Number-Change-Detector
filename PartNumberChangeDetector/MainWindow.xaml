@@ -1,0 +1,103 @@
+﻿<Window x:Class="PartNumberChangeDetector.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:PartNumberChangeDetector"
+        mc:Ignorable="d"
+        d:DesignHeight="350" d:DesignWidth="550"
+        DataContext="{x:Static local:AppState.State}" Icon="icon.ico">
+    <Window.Resources>
+        <Viewbox x:Key="FileImportIcon" x:Shared="False">
+            <Canvas Width="384" Height="512">
+                <Path Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Data="M224,136L224,0 24,0C10.7,0,0,10.7,0,24L0,488C0,501.3,10.7,512,24,512L360,512C373.3,512,384,501.3,384,488L384,160 248,160C234.8,160,224,149.2,224,136z M288,372C288,378.6,282.6,384,276,384L108,384C101.4,384,96,378.6,96,372L96,364C96,357.4,101.4,352,108,352L276,352C282.6,352,288,357.4,288,364L288,372z M288,308C288,314.6,282.6,320,276,320L108,320C101.4,320,96,314.6,96,308L96,300C96,293.4,101.4,288,108,288L276,288C282.6,288,288,293.4,288,300L288,308z M288,236L288,244C288,250.6,282.6,256,276,256L108,256C101.4,256,96,250.6,96,244L96,236C96,229.4,101.4,224,108,224L276,224C282.6,224,288,229.4,288,236z M384,121.9L384,128 256,128 256,0 262.1,0C268.5,0,274.6,2.5,279.1,7L377,105C381.5,109.5,384,115.6,384,121.9z"/>
+            </Canvas>
+        </Viewbox>
+
+        <Viewbox x:Key="FilesImportIcon" x:Shared="False">
+            <Canvas Width="384" Height="512">
+                <Path Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Data="M377,105L279.1,7C274.6,2.5,268.5,0,262.1,0L256,0 256,128 384,128 384,121.9C384,115.6,381.5,109.5,377,105z M224,136L224,0 24,0C10.7,0,0,10.7,0,24L0,488C0,501.3,10.7,512,24,512L360,512C373.3,512,384,501.3,384,488L384,160 248,160C234.8,160,224,149.2,224,136z M288,296L288,344C288,348.4,284.4,352,280,352L224,352 224,408C224,412.4,220.4,416,216,416L168,416C163.6,416,160,412.4,160,408L160,352 104,352C99.6,352,96,348.4,96,344L96,296C96,291.6,99.6,288,104,288L160,288 160,232C160,227.6,163.6,224,168,224L216,224C220.4,224,224,227.6,224,232L224,288 280,288C284.4,288,288,291.6,288,296z"/>
+            </Canvas>
+        </Viewbox>
+
+        <Viewbox x:Key="Trash" x:Shared="False">
+            <Canvas Width="448" Height="512">
+                <Path Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Data="M32,464A48,48,0,0,0,80,512L368,512A48,48,0,0,0,416,464L416,128 32,128z M304,208A16,16,0,0,1,336,208L336,432A16,16,0,0,1,304,432z M208,208A16,16,0,0,1,240,208L240,432A16,16,0,0,1,208,432z M112,208A16,16,0,0,1,144,208L144,432A16,16,0,0,1,112,432z M432,32L312,32 302.6,13.3A24,24,0,0,0,281.1,0L166.8,0A23.72,23.72,0,0,0,145.4,13.3L136,32 16,32A16,16,0,0,0,0,48L0,80A16,16,0,0,0,16,96L432,96A16,16,0,0,0,448,80L448,48A16,16,0,0,0,432,32z"/>
+            </Canvas>
+        </Viewbox>
+
+        <Viewbox x:Key="FileDownload" x:Shared="False">
+            <Canvas Width="576" Height="512">
+                <Path Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Data="M384,121.9C384,115.6,381.5,109.5,377,105L279.1,7C274.6,2.5,268.5,0,262.1,0L256,0 256,128 384,128z M571,308L475.3,211.6C465.2,201.5,447.9,208.6,447.9,222.9L447.9,288 383.9,288 383.9,352 447.9,352 447.9,417.2C447.9,431.5,465.2,438.6,475.3,428.5L571,332C577.6,325.4,577.6,314.6,571,308z M192,336L192,304C192,295.2,199.2,288,208,288L384,288 384,160 248,160C234.8,160,224,149.2,224,136L224,0 24,0C10.7,0,0,10.7,0,24L0,488C0,501.3,10.7,512,24,512L360,512C373.3,512,384,501.3,384,488L384,352 208,352C199.2,352,192,344.8,192,336z"/>
+            </Canvas>
+        </Viewbox>
+
+        <Viewbox x:Key="Cancel" x:Shared="False">
+            <Canvas Width="512" Height="512">
+                <Path Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Data="M256,8C119,8 8,119 8,256 8,393 119,504 256,504 393,504 504,393 504,256 504,119 393,8 256,8z M256,456C145.5,456 56,366.5 56,256 56,145.5 145.5,56 256,56 366.5,56 456,145.5 456,256 456,366.5 366.5,456 256,456z M357.8,193.8L295.6,256 357.8,318.2C362.5,322.9,362.5,330.5,357.8,335.2L335.2,357.8C330.5,362.5,322.9,362.5,318.2,357.8L256,295.6 193.8,357.8C189.1,362.5,181.5,362.5,176.8,357.8L154.2,335.2C149.5,330.5,149.5,322.9,154.2,318.2L216.4,256 154.2,193.8C149.5,189.1,149.5,181.5,154.2,176.8L176.8,154.2C181.5,149.5,189.1,149.5,193.8,154.2L256,216.4 318.2,154.2C322.9,149.5,330.5,149.5,335.2,154.2L357.8,176.8C362.5,181.5,362.5,189.1,357.8,193.8z"/>
+            </Canvas>
+        </Viewbox>
+    </Window.Resources>
+    <Grid Margin="5" x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition x:Name="ErrorMessageRow" Height="Auto" MaxHeight="{Binding ElementName=MainGrid, Path=ActualHeight, Converter={local:HalfHeightConverter}}"/>
+        </Grid.RowDefinitions>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Current EBOM report"/>
+            <TextBox Text="{Binding PathToCurrentEBOMReport}" Grid.Row="1" IsReadOnly="True" VerticalAlignment="Center" BorderThickness="0,0,0,1"/>
+            <Button x:Name="BrowseCurrentEBOMReport" IsEnabled="{Binding InputControlsAreEnabled}" Grid.Row="1" Grid.Column="1" Content="{StaticResource FileImportIcon}" ToolTip="Browse for current EBOM report" Margin="5,0,0,0" Width="25" Height="25" VerticalAlignment="Center" Click="BrowseCurrentEBOMReport_Click"/>
+
+            <Label Grid.Row="2" Content="Current eMS EBOM report" Margin="0,5,0,0"/>
+            <TextBox Text="{Binding PathToCurrentEMSEBOMReport}" Grid.Row="3" IsReadOnly="True" VerticalAlignment="Center" BorderThickness="0,0,0,1"/>
+            <Button x:Name="BrowseCurrentEMSEBOMReport" IsEnabled="{Binding InputControlsAreEnabled}" Grid.Row="3" Grid.Column="1" Content="{StaticResource FileImportIcon}" ToolTip="Browse for current eMS EBOM report" Margin="5,0,0,0" Width="25" Height="25" VerticalAlignment="Center" Click="BrowseCurrentEMSEBOMReport_Click"/>
+
+            <Label Grid.Row="4" Content="Previous eMS EBOM reports" Margin="0,5,0,0"/>
+            <ListView x:Name="PathsToPreviousEMSEBOMReports" ItemsSource="{Binding PathsToPreviousEBOMReports}" Grid.Row="5" Margin="0,0,0,5"/>
+            <StackPanel Grid.Row="5" Grid.Column="1" Margin="5,0,0,0">
+                <Button x:Name="AddPreviousEMSEBOMReports" IsEnabled="{Binding InputControlsAreEnabled}" Content="{StaticResource FilesImportIcon}" ToolTip="Add previous eMS EBOM reports" Width="25" Height="25" Click="AddPreviousEMSEBOMReports_Click"/>
+                <Button x:Name="RemovePreviousEMSEBOMReports" Content="{StaticResource Trash}" ToolTip="Remove selected eMS EBOM reports" Margin="0,5,0,0" Width="25" Height="25" Click="RemovePreviousEMSEBOMReports_Click">
+                    <Button.IsEnabled>
+                        <MultiBinding Converter="{local:DeleteButtonEnabledConverter}">
+                            <Binding Path="InputControlsAreEnabled"/>
+                            <Binding ElementName="PathsToPreviousEMSEBOMReports" Path="SelectedItem"/>
+                        </MultiBinding>
+                    </Button.IsEnabled>
+                </Button>
+            </StackPanel>
+
+            <ProgressBar Grid.Row="6" Value="{Binding ProgressValue}" Maximum="1" VerticalAlignment="Center" Height="5"/>
+            <Button x:Name="ExportDSList" Visibility="{Binding ExportButtonVisibility}" Grid.Row="6" Grid.Column="1" Content="{StaticResource FileDownload}" ToolTip="Save DS list" Margin="5,0,0,0" Width="25" Height="25" Click="ExportDSList_Click">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{local:ExportButtonEnabledConverter}">
+                        <Binding Path="PathToCurrentEBOMReport"/>
+                        <Binding Path="PathToCurrentEMSEBOMReport"/>
+                        <Binding Path="PathsToPreviousEBOMReports.Count"/>
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
+            <Button x:Name="CancelExportDSList" Visibility="{Binding CancelExportButtonVisibility}" Grid.Row="6" Grid.Column="1" Content="{StaticResource Cancel}" ToolTip="Cancel DS list export" Margin="5,0,0,0" Width="25" Height="25" Click="CancelExportDSList_Click"/>
+        </Grid>
+
+        <GridSplitter Visibility="{Binding SplitterVisibility}" Grid.Row="1" Height="5" Margin="0,5,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+
+        <TextBox Text="{Binding Message}" IsReadOnly="True" Grid.Row="2" Margin="0,5,0,0" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Window>
